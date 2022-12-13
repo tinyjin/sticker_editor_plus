@@ -18,6 +18,9 @@ class StickerEditingBox extends StatefulWidget {
   /// If you use onTap then you Have to manage IsSelected field in PicturModel
   final Function()? onTap;
 
+
+  final bool viewOnly;
+
   /// Create a [StickerEditingBox] widget
   ///
   /// [pictureModel] detail of your picture
@@ -28,6 +31,7 @@ class StickerEditingBox extends StatefulWidget {
       required this.boundWidth,
       required this.boundHeight,
       required this.pictureModel,
+      this.viewOnly = false,
       this.onTap,
       this.onCancel})
       : super(key: key);
@@ -61,6 +65,10 @@ class _StickerEditingBoxState extends State<StickerEditingBox> {
               setState(() => deltaOffset = const Offset(0, 0));
             },
             onScaleUpdate: (tap) {
+              if (widget.viewOnly) {
+                return;
+              }
+
               var intialScale = tap.scale;
               setState(() {
                 if (tap.pointerCount == 2) {

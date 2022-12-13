@@ -20,6 +20,7 @@ class TextEditingBox extends StatefulWidget {
 
   /// For Visibility of editing border
   bool isSelected;
+  bool viewOnly;
 
   /// Total Colors option that you want to give to user
   List<Color>? palletColor;
@@ -45,6 +46,7 @@ class TextEditingBox extends StatefulWidget {
       required this.boundHeight,
       required this.fonts,
       this.isSelected = false,
+      this.viewOnly = false,
       this.onCancel,
       this.onTap,
       this.palletColor})
@@ -91,6 +93,11 @@ class _TextEditingBoxState extends State<TextEditingBox> {
         Colors.lime,
       ];
     }
+
+    if (widget.viewOnly) {
+      return;
+    }
+
     if (widget.isSelected) {
       widget.isSelected = false;
       widget.newText.isSelected = false;
@@ -115,6 +122,10 @@ class _TextEditingBoxState extends State<TextEditingBox> {
               setState(() => deltaOffset = const Offset(0, 0));
             },
             onScaleUpdate: (tap) {
+              if (widget.viewOnly) {
+                return;
+              }
+
               setState(() {
                 if (tap.pointerCount == 2) {
                   widget.newText.scale = tap.scale;
@@ -135,6 +146,10 @@ class _TextEditingBoxState extends State<TextEditingBox> {
               });
             },
             onTap: () {
+              if (widget.viewOnly) {
+                return;
+              }
+
               if (widget.onTap == null) {
                 setState(() {
                   if (widget.isSelected) {

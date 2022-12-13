@@ -41,6 +41,12 @@ class StickerEditingView extends StatefulWidget {
   /// Editor's assetsList List
   List<String>? assetList;
 
+  /// Choose whether view only
+  bool viewOnly;
+
+  /// Editor's background color
+  Color? backgroundColor;
+
   /// Editor's image
   Widget child;
 
@@ -63,6 +69,8 @@ class StickerEditingView extends StatefulWidget {
       this.height,
       this.width,
       this.onSave,
+      this.backgroundColor,
+      this.viewOnly = false,
       required this.assetList})
       : super(key: key);
 
@@ -101,6 +109,7 @@ class _StickerEditingViewState extends State<StickerEditingView> {
     double width = MediaQuery.of(context).size.width;
 
     return Scaffold(
+      backgroundColor: widget.backgroundColor ?? Colors.white,
       body: Obx(
         () => Stack(
           fit: StackFit.expand,
@@ -113,6 +122,9 @@ class _StickerEditingViewState extends State<StickerEditingView> {
                 width: widget.width ?? width * .8,
                 child: Stack(
                   children: [
+                    widget.viewOnly ?
+                    Container()
+                    :
                     InkWell(
                       onTap: () {
                         setState(() {
@@ -127,8 +139,13 @@ class _StickerEditingViewState extends State<StickerEditingView> {
                     ),
                     ...newStringList.map((v) {
                       return TextEditingBox(
-                          isSelected: v.isSelected,
+                          isSelected: !widget.viewOnly && v.isSelected,
+                          viewOnly: widget.viewOnly,
                           onTap: () {
+                            if (widget.viewOnly) {
+                              return;
+                            }
+
                             if (!v.isSelected) {
                               setState(() {
                                 for (var element in newStringList) {
@@ -159,6 +176,7 @@ class _StickerEditingViewState extends State<StickerEditingView> {
                     }).toList(),
                     ...newimageList.map((v) {
                       return StickerEditingBox(
+                          viewOnly: widget.viewOnly,
                           onCancel: () {
                             int index = newimageList
                                 .indexWhere((element) => v == element);
@@ -166,6 +184,10 @@ class _StickerEditingViewState extends State<StickerEditingView> {
                             newimageList.removeAt(index);
                           },
                           onTap: () {
+                            if (widget.viewOnly) {
+                              return;
+                            }
+
                             if (!v.isSelected) {
                               setState(() {
                                 for (var element in newStringList) {
@@ -186,6 +208,9 @@ class _StickerEditingViewState extends State<StickerEditingView> {
                           boundHeight: height * .70,
                           pictureModel: v);
                     }),
+                    widget.viewOnly ?
+                    widget.child
+                    :
                     IgnorePointer(
                       child: widget.child,
                     )
@@ -193,6 +218,9 @@ class _StickerEditingViewState extends State<StickerEditingView> {
                 ),
               ),
             ),
+            widget.viewOnly ?
+            Container()
+            :
             Positioned(
               bottom: 24,
               child: SizedBox(
