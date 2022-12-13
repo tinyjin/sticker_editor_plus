@@ -65,6 +65,22 @@ class StickerEditingView extends StatefulWidget {
   /// Initial Picture List
   List<PictureModel> pictures;
 
+  /// Button specific UIs
+  String textButtonText;
+  Color textButtonColor;
+
+  String stickerButtonText;
+  Color stickerButtonColor;
+
+  String saveButtonText;
+  Color saveButtonColor;
+
+  String textModalTitle;
+  String textModalDefaultText;
+  Color textModalColor;
+  Color textModalBackgroundColor;
+  String textModalConfirmText;
+
   /// Create a [StickerEditingBox] widget
   ///
   StickerEditingView(
@@ -79,6 +95,17 @@ class StickerEditingView extends StatefulWidget {
       this.viewOnly = false,
       this.texts = const [],
       this.pictures = const [],
+      this.textButtonText = 'Add Text',
+      this.textButtonColor = Colors.blue,
+      this.stickerButtonText = 'Add Stickers',
+      this.stickerButtonColor = Colors.blue,
+      this.saveButtonText = 'Save',
+      this.saveButtonColor = Colors.blue,
+      this.textModalTitle = 'Edit Text',
+      this.textModalDefaultText = 'Happy day',
+      this.textModalColor = Colors.blue,
+      this.textModalBackgroundColor = const Color.fromARGB(240, 200, 200, 200),
+      this.textModalConfirmText = 'Done',
       required this.assetList})
       : super(key: key);
 
@@ -248,7 +275,8 @@ class _StickerEditingViewState extends State<StickerEditingView> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     CustomeWidgets.customButton(
-                      btnName: 'Add Text',
+                      btnName: widget.textButtonText,
+                      color: widget.textButtonColor,
                       onPressed: () async {
                         await showEditBox(
                           context: context,
@@ -259,12 +287,19 @@ class _StickerEditingViewState extends State<StickerEditingView> {
                               isSelected: false,
                               textAlign: TextAlign.center,
                               scale: 1,
-                              left: 50),
+                              left: 50
+                          ),
+                          textModalTitle: widget.textModalTitle,
+                          textModalDefaultText: widget.textModalDefaultText,
+                          textModalConfirmText: widget.textModalConfirmText,
+                          textModalBackgroundColor: widget.textModalBackgroundColor,
+                          textModalColor: widget.textModalColor,
                         );
                       },
                     ),
                     CustomeWidgets.customButton(
-                      btnName: 'Add Stickers',
+                      btnName: widget.stickerButtonText,
+                      color: widget.stickerButtonColor,
                       onPressed: () {
                         selectedTextIndex = -1;
 
@@ -272,7 +307,8 @@ class _StickerEditingViewState extends State<StickerEditingView> {
                       },
                     ),
                     CustomeWidgets.customButton(
-                      btnName: 'Save',
+                      btnName: widget.saveButtonText,
+                      color: widget.saveButtonColor,
                       onPressed: () async {
                         setState(() {
                           for (var e in newStringList) {
@@ -301,24 +337,44 @@ class _StickerEditingViewState extends State<StickerEditingView> {
     );
   }
 
-  Future showEditBox({BuildContext? context, TextModel? textModel}) {
+  Future showEditBox({
+    BuildContext? context,
+    TextModel? textModel,
+    required String textModalTitle,
+    required String textModalDefaultText,
+    required String textModalConfirmText,
+    required Color textModalBackgroundColor,
+    required Color textModalColor,
+  }) {
     return showDialog(
         context: context!,
         builder: (context) {
           final dailogTextController =
-              TextEditingController(text: selectedtextToShare);
+              TextEditingController(text: textModalDefaultText);
           return AlertDialog(
-            backgroundColor: const Color.fromARGB(240, 200, 200, 200),
-            title: const Text('Edit Text'),
+            backgroundColor: textModalBackgroundColor,
+            title: Text(textModalTitle),
             content: TextField(
                 controller: dailogTextController,
                 maxLines: 6,
                 minLines: 1,
                 autofocus: true,
-                decoration: InputDecoration(hintText: selectedtextToShare)),
+                decoration: InputDecoration(
+                  hintText: textModalDefaultText,
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: textModalColor)
+                  ),
+                  focusedBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: textModalColor)
+                  )
+                )
+            ),
             actions: [
               ElevatedButton(
-                  child: const Text('Done'),
+                  child: Text(textModalConfirmText),
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all(textModalColor)
+                  ),
                   onPressed: () {
                     setState(() {
                       for (var e in newimageList) {
