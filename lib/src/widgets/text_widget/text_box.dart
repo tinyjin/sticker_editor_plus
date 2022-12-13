@@ -60,7 +60,6 @@ class _TextEditingBoxState extends State<TextEditingBox> {
   TextAlign selectedtextAlign = TextAlign.left;
   String selectedtextToShare = "Happy ${weekDays[today - 1]}!";
   Offset deltaOffset = const Offset(0, 0);
-  double angle = 0.0;
   List<Color>? _palletColor;
   @override
   void initState() {
@@ -116,7 +115,7 @@ class _TextEditingBoxState extends State<TextEditingBox> {
       child: Transform.scale(
         scale: widget.newText.scale,
         child: Transform.rotate(
-          angle: angle,
+          angle: widget.newText.angle,
           child: GestureDetector(
             onScaleStart: (tap) {
               setState(() => deltaOffset = const Offset(0, 0));
@@ -129,7 +128,7 @@ class _TextEditingBoxState extends State<TextEditingBox> {
               setState(() {
                 if (tap.pointerCount == 2) {
                   widget.newText.scale = tap.scale;
-                  angle = tap.rotation;
+                  widget.newText.angle = tap.rotation;
                 }
                 if ((widget.newText.left + tap.focalPoint.dx - deltaOffset.dx) <=
                         widget.boundWidth &&
@@ -249,7 +248,7 @@ class _TextEditingBoxState extends State<TextEditingBox> {
                   left: 0,
                   child: GestureDetector(
                     onScaleUpdate: (detail) {
-                      setState(() => angle = detail.focalPoint.direction);
+                      setState(() => widget.newText.angle = detail.focalPoint.direction);
                     },
                     child: widget.isSelected
                         ? Container(

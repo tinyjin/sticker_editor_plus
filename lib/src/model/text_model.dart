@@ -6,6 +6,7 @@ class TextModel {
   double top;
   double left;
   bool isSelected;
+  double angle;
   TextAlign textAlign;
   double scale;
 
@@ -14,6 +15,7 @@ class TextModel {
       required this.textStyle,
       required this.top,
       required this.isSelected,
+      this.angle = 0,
       required this.textAlign,
       required this.scale,
       required this.left});
@@ -33,6 +35,7 @@ class TextModel {
       top = data['top'] ?? 0,
       left = data['left'] ?? 0,
       scale = data['scale'] ?? 1,
+      angle = data['angle'] ?? 0,
       isSelected = false,
       textAlign = TextAlign.values[data['textAlign'] ?? 0];
 
@@ -42,6 +45,7 @@ class TextModel {
       'top': top,
       'left': left,
       'scale': scale,
+      'angle': angle,
       'textStyle': {
         'font': textStyle.fontFamily,
         'fontStyle': textStyle.fontStyle?.index ?? 0,
