@@ -120,18 +120,18 @@ class _TextEditingBoxState extends State<TextEditingBox> {
                   widget.newText.scale = tap.scale;
                   angle = tap.rotation;
                 }
-                if ((widget.newText.left + tap.delta.dx - deltaOffset.dx) <=
+                if ((widget.newText.left + tap.focalPoint.dx - deltaOffset.dx) <=
                         widget.boundWidth &&
-                    (widget.newText.left + tap.delta.dx - deltaOffset.dx) > 0) {
-                  widget.newText.left += tap.delta.dx - deltaOffset.dx;
+                    (widget.newText.left + tap.focalPoint.dx - deltaOffset.dx) > 0) {
+                  widget.newText.left += tap.focalPoint.dx - deltaOffset.dx;
                 }
-                if ((widget.newText.top + tap.delta.dy - deltaOffset.dy) <
+                if ((widget.newText.top + tap.focalPoint.dy - deltaOffset.dy) <
                         widget.boundHeight &&
-                    (widget.newText.top + tap.delta.dy - deltaOffset.dy) > 0) {
-                  widget.newText.top += tap.delta.dy - deltaOffset.dy;
+                    (widget.newText.top + tap.focalPoint.dy - deltaOffset.dy) > 0) {
+                  widget.newText.top += tap.focalPoint.dy - deltaOffset.dy;
                 }
 
-                deltaOffset = tap.delta;
+                deltaOffset = tap.focalPoint;
               });
             },
             onTap: () {
@@ -234,7 +234,7 @@ class _TextEditingBoxState extends State<TextEditingBox> {
                   left: 0,
                   child: GestureDetector(
                     onScaleUpdate: (detail) {
-                      setState(() => angle = detail.delta.direction);
+                      setState(() => angle = detail.focalPoint.direction);
                     },
                     child: widget.isSelected
                         ? Container(
