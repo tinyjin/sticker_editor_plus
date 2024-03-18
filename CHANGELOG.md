@@ -1,12 +1,12 @@
-## 0.0.1
-initial release
+## 1.0.0
+This library was originally created by Harsh Radadiya.
 
-## 0.0.4
-Android, iOS and Mac support 
+Initial release based on original repository, including a few enhancements.
 
-## 0.0.6
-Documentation update
-## 0.0.7
-web support added
-## 0.0.8
-rotation issue solved
+
+- [Widget] Introduced props: `viewOnly`, `onSave`, `texts`, `pictures` and `backgroundColor`.
+- [Widget] Introduced custom controller designing interfaces.
+- [Model] Introduced JSON DTO for `PictureModel` and `TextModel`.
+- [Model] TextModel: `angle` to set custom rotation.
+- [Flutter] Upgraded versions of kotlin, flutter/dart and internal dependencies.
+- [Bug] Fixed `'delta' isn't defined`. [[Issue](https://github.com/Harsh-Radadiya/sticker_editor/issues/4)]

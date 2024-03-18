@@ -1,51 +1,35 @@
 PODS:
   - Flutter (1.0.0)
-  - flutter_inappwebview (0.0.1):
+  - path_provider_foundation (0.0.1):
     - Flutter
-    - flutter_inappwebview/Core (= 0.0.1)
-    - OrderedSet (~> 5.0)
-  - flutter_inappwebview/Core (0.0.1):
+    - FlutterMacOS
+  - sticker_editor (1.0.0):
     - Flutter
-    - OrderedSet (~> 5.0)
-  - OrderedSet (5.0.0)
-  - path_provider (0.0.1):
-    - Flutter
-  - stickereditor (0.0.1):
-    - Flutter
-  - url_launcher (0.0.1):
+  - url_launcher_ios (0.0.1):
     - Flutter
 
 DEPENDENCIES:
   - Flutter (from `Flutter`)
-  - flutter_inappwebview (from `.symlinks/plugins/flutter_inappwebview/ios`)
-  - path_provider (from `.symlinks/plugins/path_provider/ios`)
-  - stickereditor (from `.symlinks/plugins/stickereditor/ios`)
-  - url_launcher (from `.symlinks/plugins/url_launcher/ios`)
-
-SPEC REPOS:
-  trunk:
-    - OrderedSet
+  - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/darwin`)
+  - sticker_editor (from `.symlinks/plugins/sticker_editor/ios`)
+  - url_launcher_ios (from `.symlinks/plugins/url_launcher_ios/ios`)
 
 EXTERNAL SOURCES:
   Flutter:
     :path: Flutter
-  flutter_inappwebview:
-    :path: ".symlinks/plugins/flutter_inappwebview/ios"
-  path_provider:
-    :path: ".symlinks/plugins/path_provider/ios"
-  stickereditor:
-    :path: ".symlinks/plugins/stickereditor/ios"
-  url_launcher:
-    :path: ".symlinks/plugins/url_launcher/ios"
+  path_provider_foundation:
+    :path: ".symlinks/plugins/path_provider_foundation/darwin"
+  sticker_editor:
+    :path: ".symlinks/plugins/sticker_editor/ios"
+  url_launcher_ios:
+    :path: ".symlinks/plugins/url_launcher_ios/ios"
 
 SPEC CHECKSUMS:
-  Flutter: 50d75fe2f02b26cc09d224853bb45737f8b3214a
-  flutter_inappwebview: bfd58618f49dc62f2676de690fc6dcda1d6c3721
-  OrderedSet: aaeb196f7fef5a9edf55d89760da9176ad40b93c
-  path_provider: d1e9807085df1f9cc9318206cd649dc0b76be3de
-  stickereditor: 6e2efa4b7bfda5d854570bc4e115c804c669c7c9
-  url_launcher: b6e016d912f04be9f5bf6e8e82dc599b7ba59649
+  Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
+  path_provider_foundation: 3784922295ac71e43754bd15e0653ccfd36a147c
+  sticker_editor: f5b853a5480859af7aaacff13351e21ad6d3bafa
+  url_launcher_ios: 6116280ddcfe98ab8820085d8d76ae7449447586
 
-PODFILE CHECKSUM: aafe91acc616949ddb318b77800a7f51bffa2a4c
+PODFILE CHECKSUM: c4c93c5f6502fe2754f48404d3594bf779584011
 
-COCOAPODS: 1.10.2
+COCOAPODS: 1.15.2

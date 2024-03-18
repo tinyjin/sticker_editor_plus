@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:stickereditor/stickereditor.dart';
+import 'package:sticker_editor/sticker_editor.dart';
 import 'package:stickereditor_example/constants.dart';
 
 class StickerEditingViewScreen extends StatefulWidget {
@@ -15,6 +15,9 @@ class _StickerEditingViewScreenState extends State<StickerEditingViewScreen> {
   final List<String> stickerList = <String>[];
   String backgroundImageUrl = 'assets/t-shirt.jpeg';
 
+  List<TextModel> texts = <TextModel>[];
+  List<PictureModel> pictures = <PictureModel>[];
+
   @override
   void initState() {
     initialiseStickerList();
@@ -28,13 +31,21 @@ class _StickerEditingViewScreenState extends State<StickerEditingViewScreen> {
         title: const Text('StickerEditingView'),
       ),
       body: StickerEditingView(
-        isnetwork: false,
-        height: 300,
-        width: 300,
-        imgUrl: backgroundImageUrl,
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height,
+        child: Image.asset(backgroundImageUrl),
         fonts: fonts,
+        texts: texts,
+        pictures: pictures,
         palletColor: colorPallet,
         assetList: stickerList,
+        onSave: ((texts, pictures) {
+          // You can save current state via these texts and pictures (JSON)
+          setState(() {
+            texts = texts;
+            pictures = pictures;
+          });
+        }),
       ),
     );
   }
@@ -124,7 +135,7 @@ class _StickerEditingBoxScreenState extends State<StickerEditingBoxScreen> {
                   top: 50,
                   scale: 1,
                   stringUrl:
-                      'https://raw.githubusercontent.com/Harsh-Radadiya/sticker_editor/master/assets/t-shirt.jpeg',
+                      'https://raw.githubusercontent.com/Harsh-Radadiya/sticker_editor/master/example/assets/t-shirt.jpeg',
                 )),
           ],
         ),

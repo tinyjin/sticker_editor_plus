@@ -3,21 +3,23 @@
 # Run `pod lib lint stickereditor.podspec` to validate before publishing.
 #
 Pod::Spec.new do |s|
-  s.name             = 'stickereditor'
-  s.version          = '0.0.1'
+  s.name             = 'sticker_editor'
+  s.version          = '1.0.0'
   s.summary          = 'A new Sticker plugin'
   s.description      = <<-DESC
 A new Sticker plugin
                        DESC
-  s.homepage         = 'http://example.com'
+  s.homepage         = 'https://pub.dev/packages/sticker_editor'
   s.license          = { :file => '../LICENSE' }
-  s.author           = { 'Your Company' => 'email@example.com' }
+  s.author           = {
+    'Harsh Radadiya' => '',
+    'Jinny You' => 'baram991103@gmail.com'
+  }
   s.source           = { :path => '.' }
-  s.source_files = 'Classes/**/*'
-  s.dependency 'Flutter'
-  s.platform = :ios, '8.0'
+  s.source_files     = 'Classes/**/*'
+  s.dependency 'FlutterMacOS'
 
-  # Flutter.framework does not contain a i386 slice.
-  s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES', 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'i386' }
+  s.platform = :osx, '10.11'
+  s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES' }
   s.swift_version = '5.0'
 end

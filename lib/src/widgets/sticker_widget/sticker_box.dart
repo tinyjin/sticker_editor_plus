@@ -1,6 +1,6 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
-import 'package:stickereditor/src/model/picture_model.dart';
+import 'package:sticker_editor/src/model/picture_model.dart';
 
 class StickerEditingBox extends StatefulWidget {
   /// Your widget should be move within this [boundWidth]

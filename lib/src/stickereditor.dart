@@ -3,22 +3,25 @@ library sticker_editor;
 import 'dart:io';
 import 'dart:math';
 import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:screenshot/screenshot.dart';
-import 'package:stickereditor/constants_value.dart';
-import 'package:stickereditor/src/widgets/custom_button.dart';
-import 'src/model/picture_model.dart';
-import 'src/model/text_model.dart';
-import 'src/widgets/sticker_widget/sticker_box.dart';
-import 'src/widgets/text_widget/text_box.dart';
+import 'package:sticker_editor/src/constants_value.dart';
+import 'package:sticker_editor/src/widgets/custom_button.dart';
 
-export 'src/model/picture_model.dart';
-export 'src/model/text_model.dart';
-export 'package:stickereditor/constants_value.dart';
-export 'src/widgets/sticker_widget/sticker_box.dart';
-export 'src/widgets/text_widget/text_box.dart';
+import 'model/picture_model.dart';
+import 'model/text_model.dart';
+import 'widgets/sticker_widget/sticker_box.dart';
+import 'widgets/text_widget/text_box.dart';
+
+export 'package:sticker_editor/src/constants_value.dart';
+
+export 'model/picture_model.dart';
+export 'model/text_model.dart';
+export 'widgets/sticker_widget/sticker_box.dart';
+export 'widgets/text_widget/text_box.dart';
 
 typedef SaveCallback = void Function(
   List<TextModel> texts,
@@ -168,21 +171,25 @@ class _StickerEditingViewState extends State<StickerEditingView> {
                 width: widget.width ?? width * .8,
                 child: Stack(
                   children: [
-                    widget.viewOnly ?
-                    Container()
-                    :
-                    InkWell(
-                      onTap: () {
-                        setState(() {
-                          for (var element in newStringList) {
-                            element.isSelected = false;
-                          }
-                          for (var e in newimageList) {
-                            e.isSelected = false;
-                          }
-                        });
-                      },
-                    ),
+                    widget.viewOnly
+                        ? widget.child
+                        : IgnorePointer(
+                            child: widget.child,
+                          ),
+                    widget.viewOnly
+                        ? Container()
+                        : InkWell(
+                            onTap: () {
+                              setState(() {
+                                for (var element in newStringList) {
+                                  element.isSelected = false;
+                                }
+                                for (var e in newimageList) {
+                                  e.isSelected = false;
+                                }
+                              });
+                            },
+                          ),
                     ...newStringList.map((v) {
                       return TextEditingBox(
                           isSelected: !widget.viewOnly && v.isSelected,
@@ -254,83 +261,78 @@ class _StickerEditingViewState extends State<StickerEditingView> {
                           boundHeight: height * .70,
                           pictureModel: v);
                     }),
-                    widget.viewOnly ?
-                    widget.child
-                    :
-                    IgnorePointer(
-                      child: widget.child,
-                    )
                   ],
                 ),
               ),
             ),
-            widget.viewOnly ?
-            Container()
-            :
-            Positioned(
-              bottom: 24,
-              child: SizedBox(
-                width: width,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    CustomeWidgets.customButton(
-                      btnName: widget.textButtonText,
-                      color: widget.textButtonColor,
-                      onPressed: () async {
-                        await showEditBox(
-                          context: context,
-                          textModel: TextModel(
-                              name: selectedtextToShare,
-                              textStyle: const TextStyle(),
-                              top: 50,
-                              isSelected: false,
-                              textAlign: TextAlign.center,
-                              scale: 1,
-                              left: 50
+            widget.viewOnly
+                ? Container()
+                : Positioned(
+                    bottom: 24,
+                    child: SizedBox(
+                      width: width,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          CustomeWidgets.customButton(
+                            btnName: widget.textButtonText,
+                            color: widget.textButtonColor,
+                            onPressed: () async {
+                              await showEditBox(
+                                context: context,
+                                textModel: TextModel(
+                                    name: selectedtextToShare,
+                                    textStyle: const TextStyle(),
+                                    top: 50,
+                                    isSelected: false,
+                                    textAlign: TextAlign.center,
+                                    scale: 1,
+                                    left: 50),
+                                textModalTitle: widget.textModalTitle,
+                                textModalDefaultText:
+                                    widget.textModalDefaultText,
+                                textModalConfirmText:
+                                    widget.textModalConfirmText,
+                                textModalBackgroundColor:
+                                    widget.textModalBackgroundColor,
+                                textModalColor: widget.textModalColor,
+                              );
+                            },
                           ),
-                          textModalTitle: widget.textModalTitle,
-                          textModalDefaultText: widget.textModalDefaultText,
-                          textModalConfirmText: widget.textModalConfirmText,
-                          textModalBackgroundColor: widget.textModalBackgroundColor,
-                          textModalColor: widget.textModalColor,
-                        );
-                      },
-                    ),
-                    CustomeWidgets.customButton(
-                      btnName: widget.stickerButtonText,
-                      color: widget.stickerButtonColor,
-                      onPressed: () {
-                        selectedTextIndex = -1;
+                          CustomeWidgets.customButton(
+                            btnName: widget.stickerButtonText,
+                            color: widget.stickerButtonColor,
+                            onPressed: () {
+                              selectedTextIndex = -1;
 
-                        stickerWidget(context);
-                      },
-                    ),
-                    CustomeWidgets.customButton(
-                      btnName: widget.saveButtonText,
-                      color: widget.saveButtonColor,
-                      onPressed: () async {
-                        setState(() {
-                          for (var e in newStringList) {
-                            e.isSelected = false;
-                          }
-                          for (var e in newimageList) {
-                            e.isSelected = false;
-                          }
-                        });
+                              stickerWidget(context);
+                            },
+                          ),
+                          CustomeWidgets.customButton(
+                            btnName: widget.saveButtonText,
+                            color: widget.saveButtonColor,
+                            onPressed: () async {
+                              setState(() {
+                                for (var e in newStringList) {
+                                  e.isSelected = false;
+                                }
+                                for (var e in newimageList) {
+                                  e.isSelected = false;
+                                }
+                              });
 
-                        if (widget.onSave != null) {
-                          widget.onSave!(
-                            newStringList.toList(),
-                            newimageList.toList(),
-                          );
-                        }
-                      },
+                              if (widget.onSave != null) {
+                                widget.onSave!(
+                                  newStringList.toList(),
+                                  newimageList.toList(),
+                                );
+                              }
+                            },
+                          ),
+                        ],
+                      ),
                     ),
-                  ],
-                ),
-              ),
-            ),
+                  ),
           ],
         ),
       ),
@@ -360,21 +362,17 @@ class _StickerEditingViewState extends State<StickerEditingView> {
                 minLines: 1,
                 autofocus: true,
                 decoration: InputDecoration(
-                  hintText: textModalDefaultText,
-                  enabledBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: textModalColor)
-                  ),
-                  focusedBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: textModalColor)
-                  )
-                )
-            ),
+                    hintText: textModalDefaultText,
+                    enabledBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: textModalColor)),
+                    focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: textModalColor)))),
             actions: [
               ElevatedButton(
                   child: Text(textModalConfirmText),
                   style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all(textModalColor)
-                  ),
+                      backgroundColor:
+                          MaterialStateProperty.all(textModalColor)),
                   onPressed: () {
                     setState(() {
                       for (var e in newimageList) {

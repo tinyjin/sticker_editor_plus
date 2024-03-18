@@ -1,8 +1,7 @@
-name: stickereditor
+name: sticker_editor
 description: A widget that lets you modify and move your text and image according to your boundaries.
-version: 0.0.8
-homepage: https://github.com/Harsh-Radadiya/sticker_editor/blob/master/example/lib/main.dart
-repository: https://github.com/Harsh-Radadiya/sticker_editor
+version: 1.0.0
+repository: https://github.com/tinyjin/sticker-editor-flutter
 
 environment:
   sdk: ">=2.12.0 <3.0.0"

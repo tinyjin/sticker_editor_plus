@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:stickereditor/src/widgets/text_widget/text_src/option_button.dart';
+import 'package:sticker_editor/src/widgets/text_widget/text_src/option_button.dart';
 
 class TextFormatTool extends StatelessWidget {
   final Function(

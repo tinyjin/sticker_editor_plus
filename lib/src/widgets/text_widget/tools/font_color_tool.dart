@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:stickereditor/src/widgets/text_widget/text_src/color_palette.dart';
+import 'package:sticker_editor/src/widgets/text_widget/text_src/color_palette.dart';
 
 class FontColorTool extends StatelessWidget {
   final List<Color> colors;

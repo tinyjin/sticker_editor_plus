@@ -5,6 +5,8 @@ description: Demonstrates how to use the stickereditor plugin.
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
+version: 1.0.0+1
+
 environment:
   sdk: ">=2.12.0 <3.0.0"
 
@@ -18,7 +20,7 @@ dependencies:
   flutter:
     sdk: flutter
 
-  stickereditor:
+  sticker_editor:
     # When depending on this package from a real application you should use:
     #   stickereditor: ^x.y.z
     # See https://dart.dev/tools/pub/dependencies#version-constraints
@@ -29,9 +31,8 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
-  google_fonts: ^2.1.0
+  google_fonts: ^6.2.1
   url_launcher: ^6.0.12
-  flutter_inappwebview: ^5.3.2
 
 dev_dependencies:
   flutter_test:

@@ -1,5 +1,12 @@
 # Sticker Editor
-A flutter plugin for iOS, Android and Mac for Rotate, Scaling, Moving and Editing Text, Photo, Stickers
+[![pub package](https://img.shields.io/pub/v/sticker_editor.svg)](https://pub.dev/packages/sticker_editor)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
+
+
+A flutter plugin for iOS, Android and Mac for Rotate, Scaling, Moving and Editing Text, Photo, Stickers.
+
+> [!IMPORTANT]  
+> This library was originally created by Harsh Radadiya. For all rights and limitations, please refer to the https://github.com/Harsh-Radadiya/sticker_editor
 
 ![](https://github.com/Harsh-Radadiya/sticker_editor/raw/master/assets/readme/demo.gif)
 
@@ -21,8 +28,6 @@ A flutter plugin for iOS, Android and Mac for Rotate, Scaling, Moving and Editin
  
 
 A flutter package Sticker Editor which will help you to create editable and scalable text or sticker widget that can be dragged around the area you given in screen.
-
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
 ## Features 💚
 
@@ -46,10 +51,9 @@ Fore NetworkImage, macOS needs you to request a specific entitlement in order to
 - Sticker View 
 ```Dart
 StickerEditingView(
-  isnetwork: false,
   height: 300,
   width: 300,
-  imgUrl: backgroundImageUrl,
+  child: targetWidget,
   fonts: fonts,
   palletColor: colorPallet,
   assetList: stickerList,
@@ -102,7 +106,7 @@ Container(
             top: 50,
             scale: 1,
             stringUrl:
-                'https://raw.githubusercontent.com/Harsh-Radadiya/sticker_editor/master/assets/t-shirt.jpeg',
+                'https://raw.githubusercontent.com/Harsh-Radadiya/sticker_editor/master/example/assets/t-shirt.jpeg',
           )),
     ],
   ),

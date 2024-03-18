@@ -1,7 +1,7 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
-import 'package:stickereditor/constants_value.dart';
-import 'package:stickereditor/src/model/text_model.dart';
+import 'package:sticker_editor/src/constants_value.dart';
+import 'package:sticker_editor/src/model/text_model.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter/gestures.dart';
 
