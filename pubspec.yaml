@@ -1,7 +1,7 @@
-name: sticker_editor
+name: sticker_editor_plus
 description: A widget that lets you modify and move your text and image according to your boundaries.
 version: 1.0.0
-repository: https://github.com/tinyjin/sticker-editor-flutter
+repository: https://github.com/tinyjin/sticker_editor_plus
 
 environment:
   sdk: '>=3.2.4 <4.0.0'

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sticker_editor/src/widgets/text_widget/text_src/color_palette.dart';
+import 'package:sticker_editor_plus/src/widgets/text_widget/text_src/color_palette.dart';
 
 class BackgroundColorTool extends StatelessWidget {
   final List<Color> colors;

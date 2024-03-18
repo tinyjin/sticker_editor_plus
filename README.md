@@ -1,5 +1,5 @@
 # Sticker Editor
-[![pub package](https://img.shields.io/pub/v/sticker_editor.svg)](https://pub.dev/packages/sticker_editor)
+[![pub package](https://img.shields.io/pub/v/sticker_editor_plus.svg)](https://pub.dev/packages/sticker_editor_plus)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
 

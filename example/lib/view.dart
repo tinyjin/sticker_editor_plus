@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:sticker_editor/sticker_editor.dart';
+import 'package:sticker_editor_plus/sticker_editor_plus.dart';
 import 'package:stickereditor_example/constants.dart';
 
 class StickerEditingViewScreen extends StatefulWidget {

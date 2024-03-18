@@ -1,6 +1,6 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
-import 'package:sticker_editor/src/model/picture_model.dart';
+import 'package:sticker_editor_plus/src/model/picture_model.dart';
 
 class StickerEditingBox extends StatefulWidget {
   /// Your widget should be move within this [boundWidth]
@@ -17,7 +17,6 @@ class StickerEditingBox extends StatefulWidget {
 
   /// If you use onTap then you Have to manage IsSelected field in PicturModel
   final Function()? onTap;
-
 
   final bool viewOnly;
 
@@ -91,13 +90,20 @@ class _StickerEditingBoxState extends State<StickerEditingBox> {
                             tap.focalPoint.dx -
                             deltaOffset.dx) <=
                         widget.boundWidth &&
-                    (widget.pictureModel.left + tap.focalPoint.dx - deltaOffset.dx) >
+                    (widget.pictureModel.left +
+                            tap.focalPoint.dx -
+                            deltaOffset.dx) >
                         0) {
-                  widget.pictureModel.left += tap.focalPoint.dx - deltaOffset.dx;
+                  widget.pictureModel.left +=
+                      tap.focalPoint.dx - deltaOffset.dx;
                 }
-                if ((widget.pictureModel.top + tap.focalPoint.dy - deltaOffset.dy) <
+                if ((widget.pictureModel.top +
+                            tap.focalPoint.dy -
+                            deltaOffset.dy) <
                         widget.boundHeight &&
-                    (widget.pictureModel.top + tap.focalPoint.dy - deltaOffset.dy) >
+                    (widget.pictureModel.top +
+                            tap.focalPoint.dy -
+                            deltaOffset.dy) >
                         0) {
                   widget.pictureModel.top += tap.focalPoint.dy - deltaOffset.dy;
                 }

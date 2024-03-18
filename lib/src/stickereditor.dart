@@ -2,15 +2,15 @@ library sticker_editor;
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:sticker_editor/src/constants_value.dart';
-import 'package:sticker_editor/src/widgets/custom_button.dart';
+import 'package:sticker_editor_plus/src/constants_value.dart';
+import 'package:sticker_editor_plus/src/widgets/custom_button.dart';
 
 import 'model/picture_model.dart';
 import 'model/text_model.dart';
 import 'widgets/sticker_widget/sticker_box.dart';
 import 'widgets/text_widget/text_box.dart';
 
-export 'package:sticker_editor/src/constants_value.dart';
+export 'package:sticker_editor_plus/src/constants_value.dart';
 
 export 'model/picture_model.dart';
 export 'model/text_model.dart';

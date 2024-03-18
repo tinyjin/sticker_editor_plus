@@ -3,7 +3,7 @@ PODS:
   - path_provider_foundation (0.0.1):
     - Flutter
     - FlutterMacOS
-  - sticker_editor (1.0.0):
+  - sticker_editor_plus (1.0.0):
     - Flutter
   - url_launcher_ios (0.0.1):
     - Flutter
@@ -11,7 +11,7 @@ PODS:
 DEPENDENCIES:
   - Flutter (from `Flutter`)
   - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/darwin`)
-  - sticker_editor (from `.symlinks/plugins/sticker_editor/ios`)
+  - sticker_editor_plus (from `.symlinks/plugins/sticker_editor_plus/ios`)
   - url_launcher_ios (from `.symlinks/plugins/url_launcher_ios/ios`)
 
 EXTERNAL SOURCES:
@@ -19,15 +19,15 @@ EXTERNAL SOURCES:
     :path: Flutter
   path_provider_foundation:
     :path: ".symlinks/plugins/path_provider_foundation/darwin"
-  sticker_editor:
-    :path: ".symlinks/plugins/sticker_editor/ios"
+  sticker_editor_plus:
+    :path: ".symlinks/plugins/sticker_editor_plus/ios"
   url_launcher_ios:
     :path: ".symlinks/plugins/url_launcher_ios/ios"
 
 SPEC CHECKSUMS:
   Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
   path_provider_foundation: 3784922295ac71e43754bd15e0653ccfd36a147c
-  sticker_editor: f5b853a5480859af7aaacff13351e21ad6d3bafa
+  sticker_editor_plus: 8a11d20638a231b7b24eb1b07b18358de454418f
   url_launcher_ios: 6116280ddcfe98ab8820085d8d76ae7449447586
 
 PODFILE CHECKSUM: c4c93c5f6502fe2754f48404d3594bf779584011

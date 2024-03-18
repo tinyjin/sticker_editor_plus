@@ -6,7 +6,7 @@ import FlutterMacOS
 import Foundation
 
 import path_provider_foundation
-import sticker_editor
+import sticker_editor_plus
 import url_launcher_macos
 
 func RegisterGeneratedPlugins(registry: FlutterPluginRegistry) {

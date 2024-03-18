@@ -1,7 +1,7 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
-import 'package:sticker_editor/src/constants_value.dart';
-import 'package:sticker_editor/src/model/text_model.dart';
+import 'package:sticker_editor_plus/src/constants_value.dart';
+import 'package:sticker_editor_plus/src/model/text_model.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter/gestures.dart';
 
@@ -130,14 +130,18 @@ class _TextEditingBoxState extends State<TextEditingBox> {
                   widget.newText.scale = tap.scale;
                   widget.newText.angle = tap.rotation;
                 }
-                if ((widget.newText.left + tap.focalPoint.dx - deltaOffset.dx) <=
+                if ((widget.newText.left +
+                            tap.focalPoint.dx -
+                            deltaOffset.dx) <=
                         widget.boundWidth &&
-                    (widget.newText.left + tap.focalPoint.dx - deltaOffset.dx) > 0) {
+                    (widget.newText.left + tap.focalPoint.dx - deltaOffset.dx) >
+                        0) {
                   widget.newText.left += tap.focalPoint.dx - deltaOffset.dx;
                 }
                 if ((widget.newText.top + tap.focalPoint.dy - deltaOffset.dy) <
                         widget.boundHeight &&
-                    (widget.newText.top + tap.focalPoint.dy - deltaOffset.dy) > 0) {
+                    (widget.newText.top + tap.focalPoint.dy - deltaOffset.dy) >
+                        0) {
                   widget.newText.top += tap.focalPoint.dy - deltaOffset.dy;
                 }
 
@@ -248,7 +252,8 @@ class _TextEditingBoxState extends State<TextEditingBox> {
                   left: 0,
                   child: GestureDetector(
                     onScaleUpdate: (detail) {
-                      setState(() => widget.newText.angle = detail.focalPoint.direction);
+                      setState(() =>
+                          widget.newText.angle = detail.focalPoint.direction);
                     },
                     child: widget.isSelected
                         ? Container(
