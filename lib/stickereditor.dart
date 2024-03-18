@@ -36,11 +36,8 @@ class StickerEditingView extends StatefulWidget {
   /// Editor's assetsList List
   List<String>? assetList;
 
-  /// Editor's image type
-  bool isnetwork;
-
   /// Editor's image
-  String imgUrl;
+  Widget child;
 
   /// StickerEditor View Height
   double? height;
@@ -53,11 +50,10 @@ class StickerEditingView extends StatefulWidget {
   StickerEditingView(
       {Key? key,
       required this.fonts,
+      required this.child,
       this.palletColor,
       this.height,
       this.width,
-      required this.isnetwork,
-      required this.imgUrl,
       required this.assetList})
       : super(key: key);
 
@@ -119,19 +115,6 @@ class _StickerEditingViewState extends State<StickerEditingView> {
                   width: widget.width ?? width * .78,
                   child: Stack(
                     children: [
-                      widget.isnetwork
-                          ? Image.network(
-                              widget.imgUrl,
-                              height: widget.height ?? height * .40,
-                              width: widget.width ?? width * .78,
-                              fit: BoxFit.cover,
-                            )
-                          : Image.asset(
-                              widget.imgUrl,
-                              height: widget.height ?? height * .40,
-                              width: widget.width ?? width * .78,
-                              fit: BoxFit.cover,
-                            ),
                       InkWell(
                         onTap: () {
                           setState(() {
@@ -205,6 +188,9 @@ class _StickerEditingViewState extends State<StickerEditingView> {
                             boundHeight: height * .30,
                             pictureModel: v);
                       }),
+                      IgnorePointer(
+                        child: widget.child,
+                      )
                     ],
                   ),
                 ),
