@@ -71,12 +71,6 @@ class StickerEditingView extends StatefulWidget {
 }
 
 class _StickerEditingViewState extends State<StickerEditingView> {
-  // image source
-  ScreenshotController screenshotController = ScreenshotController();
-  String fileName = '';
-  String imagePath = '';
-  File? file;
-
   // offset
   double x = 120.0;
   double y = 160.0;
@@ -96,9 +90,6 @@ class _StickerEditingViewState extends State<StickerEditingView> {
   RxList<TextModel> newStringList = <TextModel>[].obs;
   RxList<PictureModel> newimageList = <PictureModel>[].obs;
 
-  // genearting Image
-  bool showProgressOnGenerate = false;
-
   @override
   void initState() {
     super.initState();
@@ -117,91 +108,88 @@ class _StickerEditingViewState extends State<StickerEditingView> {
             Positioned(
               top: 0,
               left: 0,
-              child: Screenshot(
-                controller: screenshotController,
-                child: SizedBox(
-                  height: widget.height ?? height * .8,
-                  width: widget.width ?? width * .8,
-                  child: Stack(
-                    children: [
-                      InkWell(
-                        onTap: () {
-                          setState(() {
-                            for (var element in newStringList) {
-                              element.isSelected = false;
+              child: SizedBox(
+                height: widget.height ?? height * .8,
+                width: widget.width ?? width * .8,
+                child: Stack(
+                  children: [
+                    InkWell(
+                      onTap: () {
+                        setState(() {
+                          for (var element in newStringList) {
+                            element.isSelected = false;
+                          }
+                          for (var e in newimageList) {
+                            e.isSelected = false;
+                          }
+                        });
+                      },
+                    ),
+                    ...newStringList.map((v) {
+                      return TextEditingBox(
+                          isSelected: v.isSelected,
+                          onTap: () {
+                            if (!v.isSelected) {
+                              setState(() {
+                                for (var element in newStringList) {
+                                  element.isSelected = false;
+                                }
+                                for (var e in newimageList) {
+                                  e.isSelected = false;
+                                }
+                                v.isSelected = true;
+                              });
+                            } else {
+                              setState(() {
+                                v.isSelected = false;
+                              });
                             }
-                            for (var e in newimageList) {
-                              e.isSelected = false;
+                          },
+                          onCancel: () {
+                            int index = newStringList
+                                .indexWhere((element) => v == element);
+
+                            newStringList.removeAt(index);
+                          },
+                          palletColor: widget.palletColor,
+                          fonts: widget.fonts,
+                          newText: v,
+                          boundWidth: width * .90 - width * .20,
+                          boundHeight: height * .70 - height * .07);
+                    }).toList(),
+                    ...newimageList.map((v) {
+                      return StickerEditingBox(
+                          onCancel: () {
+                            int index = newimageList
+                                .indexWhere((element) => v == element);
+
+                            newimageList.removeAt(index);
+                          },
+                          onTap: () {
+                            if (!v.isSelected) {
+                              setState(() {
+                                for (var element in newStringList) {
+                                  element.isSelected = false;
+                                }
+                                for (var e in newimageList) {
+                                  e.isSelected = false;
+                                }
+                                v.isSelected = true;
+                              });
+                            } else {
+                              setState(() {
+                                v.isSelected = false;
+                              });
                             }
-                          });
-                        },
-                      ),
-                      ...newStringList.map((v) {
-                        return TextEditingBox(
-                            isSelected: v.isSelected,
-                            onTap: () {
-                              if (!v.isSelected) {
-                                setState(() {
-                                  for (var element in newStringList) {
-                                    element.isSelected = false;
-                                  }
-                                  for (var e in newimageList) {
-                                    e.isSelected = false;
-                                  }
-                                  v.isSelected = true;
-                                });
-                              } else {
-                                setState(() {
-                                  v.isSelected = false;
-                                });
-                              }
-                            },
-                            onCancel: () {
-                              int index = newStringList
-                                  .indexWhere((element) => v == element);
-
-                              newStringList.removeAt(index);
-                            },
-                            palletColor: widget.palletColor,
-                            fonts: widget.fonts,
-                            newText: v,
-                            boundWidth: width * .90 - width * .20,
-                            boundHeight: height * .70 - height * .07);
-                      }).toList(),
-                      ...newimageList.map((v) {
-                        return StickerEditingBox(
-                            onCancel: () {
-                              int index = newimageList
-                                  .indexWhere((element) => v == element);
-
-                              newimageList.removeAt(index);
-                            },
-                            onTap: () {
-                              if (!v.isSelected) {
-                                setState(() {
-                                  for (var element in newStringList) {
-                                    element.isSelected = false;
-                                  }
-                                  for (var e in newimageList) {
-                                    e.isSelected = false;
-                                  }
-                                  v.isSelected = true;
-                                });
-                              } else {
-                                setState(() {
-                                  v.isSelected = false;
-                                });
-                              }
-                            },
-                            boundWidth: width * .90,
-                            boundHeight: height * .70,
-                            pictureModel: v);
-                      }),
-                      IgnorePointer(
-                        child: widget.child,
-                      )
-                    ],
-                  ),
+                          },
+                          boundWidth: width * .90,
+                          boundHeight: height * .70,
+                          pictureModel: v);
+                    }),
+                    IgnorePointer(
+                      child: widget.child,
+                    )
+                  ],
                 ),
               ),
             ),
@@ -247,54 +235,19 @@ class _StickerEditingViewState extends State<StickerEditingView> {
                             e.isSelected = false;
                           }
                         });
-                        Future.delayed(const Duration(milliseconds: 200),
-                            () async {
-                          imagePath = '';
-                          if (Platform.isMacOS) {
-                            imagePath =
-                                (await getApplicationDocumentsDirectory())
-                                    .path
-                                    .trim(); //from path_provide package
-                          } else if (Platform.isAndroid) {
-                            imagePath = (await getExternalStorageDirectory())!
-                                .path
-                                .trim(); //from path_provide package
 
-                          } else if (Platform.isIOS) {
-                            imagePath =
-                                (await getApplicationDocumentsDirectory())
-                                    .path
-                                    .trim();
-                          }
-
-                          if (widget.onSave != null) {
-                            widget.onSave!(
-                              newStringList.toList(),
-                              newimageList.toList(),
-                            );
-                          }
-
-                          Random().nextInt(15000);
-                          fileName = '${Random().nextInt(15000)}.png';
-
-                          await screenshotController.captureAndSave(
-                              imagePath, //set path where screenshot will be saved
-                              fileName: fileName);
-                          file = await File('$imagePath/$fileName')
-                              .create(recursive: true);
-
-                          setState(() {});
-                        });
+                        if (widget.onSave != null) {
+                          widget.onSave!(
+                            newStringList.toList(),
+                            newimageList.toList(),
+                          );
+                        }
                       },
                     ),
                   ],
                 ),
               ),
             ),
-            _previewDownloadedImage(),
-            showProgressOnGenerate
-                ? const Center(child: CircularProgressIndicator())
-                : Column(),
           ],
         ),
       ),
@@ -336,38 +289,6 @@ class _StickerEditingViewState extends State<StickerEditingView> {
             ],
           );
         });
-  }
-
-  //preview Image
-  Widget _previewDownloadedImage() {
-    return imagePath != ''
-        ? Positioned(
-            bottom: 10,
-            left: 5,
-            child: Stack(
-              children: [
-                Container(
-                  width: 100,
-                  height: 100,
-                  decoration: BoxDecoration(
-                      borderRadius:
-                          const BorderRadius.all(Radius.circular(5.0)),
-                      boxShadow: const [
-                        BoxShadow(
-                            color: Colors.black,
-                            blurRadius: 10,
-                            offset: Offset(0.3, 0.6))
-                      ],
-                      image: DecorationImage(
-                          image: FileImage(file!), fit: BoxFit.cover)),
-                ),
-                InkWell(
-                    onTap: () => setState(() => imagePath = ''),
-                    child: const Icon(Icons.cancel)),
-              ],
-            ),
-          )
-        : Container();
   }
 
   // Sticker widget
