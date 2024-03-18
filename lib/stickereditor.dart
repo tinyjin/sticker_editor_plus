@@ -20,6 +20,11 @@ export 'package:stickereditor/constants_value.dart';
 export 'src/widgets/sticker_widget/sticker_box.dart';
 export 'src/widgets/text_widget/text_box.dart';
 
+typedef SaveCallback = void Function(
+  List<TextModel> texts,
+  List<PictureModel> pictures,
+);
+
 /// Sticker editor view
 /// A flutter widget that rotate, zoom and edit text and Sticker
 ///
@@ -45,6 +50,9 @@ class StickerEditingView extends StatefulWidget {
   /// StickerEditor View Width
   double? width;
 
+  /// Callback for saving
+  SaveCallback? onSave;
+
   /// Create a [StickerEditingBox] widget
   ///
   StickerEditingView(
@@ -54,6 +62,7 @@ class StickerEditingView extends StatefulWidget {
       this.palletColor,
       this.height,
       this.width,
+      this.onSave,
       required this.assetList})
       : super(key: key);
 
@@ -228,7 +237,7 @@ class _StickerEditingViewState extends State<StickerEditingView> {
                       },
                     ),
                     CustomeWidgets.customButton(
-                      btnName: 'Generate',
+                      btnName: 'Save',
                       onPressed: () async {
                         setState(() {
                           for (var e in newStringList) {
@@ -256,6 +265,13 @@ class _StickerEditingViewState extends State<StickerEditingView> {
                                 (await getApplicationDocumentsDirectory())
                                     .path
                                     .trim();
+                          }
+
+                          if (widget.onSave != null) {
+                            widget.onSave!(
+                              newStringList.toList(),
+                              newimageList.toList(),
+                            );
                           }
 
                           Random().nextInt(15000);
