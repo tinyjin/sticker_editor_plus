@@ -69,7 +69,7 @@ class _StickerEditingBoxState extends State<StickerEditingBox> {
                 return;
               }
 
-              var intialScale = tap.scale;
+              // var intialScale = tap.scale;
               setState(() {
                 if (tap.pointerCount == 2) {
                   widget.pictureModel.angle +=

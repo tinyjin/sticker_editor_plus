@@ -1,13 +1,7 @@
 library sticker_editor;
 
-import 'dart:io';
-import 'dart:math';
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:path_provider/path_provider.dart';
-import 'package:screenshot/screenshot.dart';
 import 'package:sticker_editor/src/constants_value.dart';
 import 'package:sticker_editor/src/widgets/custom_button.dart';
 

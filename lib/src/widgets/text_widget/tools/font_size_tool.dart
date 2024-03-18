@@ -62,7 +62,7 @@ class FontSizeTool extends StatelessWidget {
 
 class _ResizeSlider extends StatefulWidget {
   final double value;
-  final double? min;
+  // final double? min;
   final double? max;
   final IconData icon;
   final Function(double) onChange;
@@ -71,7 +71,7 @@ class _ResizeSlider extends StatefulWidget {
     required this.value,
     required this.icon,
     required this.onChange,
-    this.min = 0,
+    // this.min = 0,
     this.max = 100,
   });
 
@@ -111,7 +111,8 @@ class _ResizeSliderState extends State<_ResizeSlider> {
 
                 widget.onChange(value);
               },
-              min: widget.min!,
+              min: 0,
+              // min: widget.min!,
               max: widget.max!,
             ),
           ),
