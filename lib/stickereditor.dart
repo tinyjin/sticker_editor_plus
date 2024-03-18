@@ -106,13 +106,13 @@ class _StickerEditingViewState extends State<StickerEditingView> {
           fit: StackFit.expand,
           children: <Widget>[
             Positioned(
-              top: height * .14,
-              left: width * .11,
+              top: 0,
+              left: 0,
               child: Screenshot(
                 controller: screenshotController,
                 child: SizedBox(
-                  height: widget.height ?? height * .40,
-                  width: widget.width ?? width * .78,
+                  height: widget.height ?? height * .8,
+                  width: widget.width ?? width * .8,
                   child: Stack(
                     children: [
                       InkWell(
@@ -156,8 +156,8 @@ class _StickerEditingViewState extends State<StickerEditingView> {
                             palletColor: widget.palletColor,
                             fonts: widget.fonts,
                             newText: v,
-                            boundWidth: width * .78 - width * .20,
-                            boundHeight: height * .40 - height * .07);
+                            boundWidth: width * .90 - width * .20,
+                            boundHeight: height * .70 - height * .07);
                       }).toList(),
                       ...newimageList.map((v) {
                         return StickerEditingBox(
@@ -184,8 +184,8 @@ class _StickerEditingViewState extends State<StickerEditingView> {
                                 });
                               }
                             },
-                            boundWidth: width * .70,
-                            boundHeight: height * .30,
+                            boundWidth: width * .90,
+                            boundHeight: height * .70,
                             pictureModel: v);
                       }),
                       IgnorePointer(
@@ -197,7 +197,7 @@ class _StickerEditingViewState extends State<StickerEditingView> {
               ),
             ),
             Positioned(
-              top: 30,
+              bottom: 24,
               child: SizedBox(
                 width: width,
                 child: Row(
