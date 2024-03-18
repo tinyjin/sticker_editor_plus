@@ -59,6 +59,12 @@ class StickerEditingView extends StatefulWidget {
   /// Callback for saving
   SaveCallback? onSave;
 
+  /// Initial Text List
+  List<TextModel> texts;
+
+  /// Initial Picture List
+  List<PictureModel> pictures;
+
   /// Create a [StickerEditingBox] widget
   ///
   StickerEditingView(
@@ -71,6 +77,8 @@ class StickerEditingView extends StatefulWidget {
       this.onSave,
       this.backgroundColor,
       this.viewOnly = false,
+      this.texts = const [],
+      this.pictures = const [],
       required this.assetList})
       : super(key: key);
 
@@ -100,7 +108,18 @@ class _StickerEditingViewState extends State<StickerEditingView> {
 
   @override
   void initState() {
+    loadInitialResources();
     super.initState();
+  }
+
+  void loadInitialResources() {
+    if (widget.texts.isNotEmpty) {
+      newStringList.addAll(widget.texts);
+    }
+
+    if (widget.pictures.isNotEmpty) {
+      newimageList.addAll(widget.pictures);
+    }
   }
 
   @override
