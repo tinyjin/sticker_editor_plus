@@ -1,3 +1,32 @@
+## 1.1.0
+
+Support custom controller Icons. [[issue](https://github.com/tinyjin/sticker_editor_plus/issues/1)]
+
+- [Widget] Introduced props: `resizeIcon`, `rotateIcon`, `closeIcon` and `editIcon` [[patch](https://github.com/tinyjin/sticker_editor_plus/pull/2)]
+
+```dart
+// Skip the parameters to set default Icon
+
+StickerEditingView(
+  rotateIcon: const Icon(Icons.heart_broken),
+  closeIcon: const Icon(Icons.star),
+  rotateIcon: const Icon(Icons.rectangle),
+  editIcon: const Icon(Icons.edit),
+)
+
+StickerEditingBox(
+  rotateIcon: const Icon(Icons.heart_broken),
+  closeIcon: const Icon(Icons.star),
+  rotateIcon: const Icon(Icons.rectangle),
+)
+
+TextEditingBox(
+  rotateIcon: const Icon(Icons.heart_broken),
+  closeIcon: const Icon(Icons.star),
+  rotateIcon: const Icon(Icons.rectangle),
+)
+```
+
 ## 1.0.0
 This library was originally created by Harsh Radadiya.
 
