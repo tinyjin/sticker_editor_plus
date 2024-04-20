@@ -78,6 +78,12 @@ class StickerEditingView extends StatefulWidget {
   Color textModalBackgroundColor;
   String textModalConfirmText;
 
+  /// Custom controller Icons
+  final Icon? editIcon;
+  final Icon? resizeIcon;
+  final Icon? rotateIcon;
+  final Icon? closeIcon;
+
   /// Create a [StickerEditingBox] widget
   ///
   StickerEditingView(
@@ -89,6 +95,10 @@ class StickerEditingView extends StatefulWidget {
       this.width,
       this.onSave,
       this.backgroundColor,
+      this.editIcon,
+      this.resizeIcon,
+      this.rotateIcon,
+      this.closeIcon,
       this.viewOnly = false,
       this.texts = const [],
       this.pictures = const [],
@@ -218,6 +228,10 @@ class _StickerEditingViewState extends State<StickerEditingView> {
                           palletColor: widget.palletColor,
                           fonts: widget.fonts,
                           newText: v,
+                          editIcon: widget.editIcon,
+                          resizeIcon: widget.resizeIcon,
+                          closeIcon: widget.closeIcon,
+                          rotateIcon: widget.rotateIcon,
                           boundWidth: width * .90 - width * .20,
                           boundHeight: height * .70 - height * .07);
                     }).toList(),
@@ -251,6 +265,9 @@ class _StickerEditingViewState extends State<StickerEditingView> {
                               });
                             }
                           },
+                          resizeIcon: widget.resizeIcon,
+                          closeIcon: widget.closeIcon,
+                          rotateIcon: widget.rotateIcon,
                           boundWidth: width * .90,
                           boundHeight: height * .70,
                           pictureModel: v);

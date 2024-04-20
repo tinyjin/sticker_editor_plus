@@ -22,6 +22,12 @@ class TextEditingBox extends StatefulWidget {
   bool isSelected;
   bool viewOnly;
 
+  /// Custom controller Icons
+  final Icon? editIcon;
+  final Icon? resizeIcon;
+  final Icon? rotateIcon;
+  final Icon? closeIcon;
+
   /// Total Colors option that you want to give to user
   List<Color>? palletColor;
 
@@ -45,6 +51,10 @@ class TextEditingBox extends StatefulWidget {
       required this.boundWidth,
       required this.boundHeight,
       required this.fonts,
+      this.editIcon,
+      this.resizeIcon,
+      this.rotateIcon,
+      this.closeIcon,
       this.isSelected = false,
       this.viewOnly = false,
       this.onCancel,
@@ -215,10 +225,15 @@ class _TextEditingBoxState extends State<TextEditingBox> {
                     },
                     child: widget.isSelected
                         ? Container(
-                            decoration: const BoxDecoration(
-                                shape: BoxShape.circle, color: Colors.white),
-                            child: const Icon(Icons.cancel_outlined,
-                                color: Colors.black, size: 17),
+                            padding: const EdgeInsets.all(2),
+                            decoration: BoxDecoration(
+                                border:
+                                    Border.all(color: Colors.black, width: 1),
+                                shape: BoxShape.circle,
+                                color: Colors.white),
+                            child: widget.closeIcon ??
+                                const Icon(Icons.close,
+                                    color: Colors.black, size: 12),
                           )
                         : Container(),
                   ),
@@ -241,8 +256,9 @@ class _TextEditingBoxState extends State<TextEditingBox> {
                                     Border.all(color: Colors.black, width: 1),
                                 shape: BoxShape.circle,
                                 color: Colors.white),
-                            child: const Icon(Icons.edit,
-                                color: Colors.black, size: 10),
+                            child: widget.editIcon ??
+                                const Icon(Icons.edit,
+                                    color: Colors.black, size: 10),
                           )
                         : Container(),
                   ),
@@ -263,8 +279,9 @@ class _TextEditingBoxState extends State<TextEditingBox> {
                                     Border.all(color: Colors.black, width: 1),
                                 shape: BoxShape.circle,
                                 color: Colors.white),
-                            child: const Icon(Icons.rotate_right,
-                                color: Colors.black, size: 10),
+                            child: widget.rotateIcon ??
+                                const Icon(Icons.rotate_right,
+                                    color: Colors.black, size: 10),
                           )
                         : Container(),
                   ),
@@ -290,8 +307,9 @@ class _TextEditingBoxState extends State<TextEditingBox> {
                                     Border.all(color: Colors.black, width: 1),
                                 color: Colors.white,
                                 shape: BoxShape.circle),
-                            child: const Icon(Icons.crop,
-                                color: Colors.black, size: 10),
+                            child: widget.resizeIcon ??
+                                const Icon(Icons.crop,
+                                    color: Colors.black, size: 10),
                           )
                         : Container(),
                   ),
