@@ -20,6 +20,11 @@ class StickerEditingBox extends StatefulWidget {
 
   final bool viewOnly;
 
+  /// Custom controller Icons
+  final Icon? resizeIcon;
+  final Icon? rotateIcon;
+  final Icon? closeIcon;
+
   /// Create a [StickerEditingBox] widget
   ///
   /// [pictureModel] detail of your picture
@@ -31,6 +36,9 @@ class StickerEditingBox extends StatefulWidget {
       required this.boundHeight,
       required this.pictureModel,
       this.viewOnly = false,
+      this.resizeIcon,
+      this.rotateIcon,
+      this.closeIcon,
       this.onTap,
       this.onCancel})
       : super(key: key);
@@ -159,8 +167,9 @@ class _StickerEditingBoxState extends State<StickerEditingBox> {
                                     Border.all(color: Colors.black, width: 1),
                                 shape: BoxShape.circle,
                                 color: Colors.white),
-                            child: const Icon(Icons.sync_alt,
-                                color: Colors.black, size: 12),
+                            child: widget.rotateIcon ??
+                                const Icon(Icons.sync_alt,
+                                    color: Colors.black, size: 12),
                           )
                         : Container(),
                   ),
@@ -177,10 +186,15 @@ class _StickerEditingBoxState extends State<StickerEditingBox> {
                     },
                     child: widget.pictureModel.isSelected
                         ? Container(
-                            decoration: const BoxDecoration(
-                                shape: BoxShape.circle, color: Colors.white),
-                            child: const Icon(Icons.cancel_outlined,
-                                color: Colors.black, size: 18),
+                            padding: const EdgeInsets.all(2),
+                            decoration: BoxDecoration(
+                                border:
+                                    Border.all(color: Colors.black, width: 1),
+                                shape: BoxShape.circle,
+                                color: Colors.white),
+                            child: widget.closeIcon ??
+                                const Icon(Icons.close,
+                                    color: Colors.black, size: 12),
                           )
                         : Container(),
                   ),
@@ -206,8 +220,9 @@ class _StickerEditingBoxState extends State<StickerEditingBox> {
                                       Border.all(color: Colors.black, width: 1),
                                   color: Colors.white,
                                   shape: BoxShape.circle),
-                              child: const Icon(Icons.crop,
-                                  color: Colors.black, size: 12))
+                              child: widget.resizeIcon ??
+                                  const Icon(Icons.crop,
+                                      color: Colors.black, size: 12))
                           : Container()),
                 ),
               ],
