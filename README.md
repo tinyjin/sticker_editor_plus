@@ -5,16 +5,13 @@
 
 A flutter plugin for iOS, Android and Mac for Rotate, Scaling, Moving and Editing Text, Photo, Stickers.
 
-> [!IMPORTANT]  
-> This library was originally created by Harsh Radadiya. For all rights and limitations, please refer to the https://github.com/Harsh-Radadiya/sticker_editor
-
-![](https://github.com/Harsh-Radadiya/sticker_editor/raw/master/assets/readme/demo.gif)
+![](https://github.com/tinyjin/sticker_editor/raw/master/assets/readme/demo.gif)
 
 <br>
 
 | Sticker Editor                                                                                     |                                                                                                       |
 | -------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
-| ![](https://github.com/Harsh-Radadiya/sticker_editor/raw/master/assets/readme/text_editor_box.png) | ![](https://github.com/Harsh-Radadiya/sticker_editor/raw/master/assets/readme/sticker_editor_box.png) |
+| ![](https://github.com/tinyjin/sticker_editor/raw/master/assets/readme/text_editor_box.png) | ![](https://github.com/tinyjin/sticker_editor/raw/master/assets/readme/sticker_editor_box.png) |
 
 <br>
 
@@ -22,7 +19,7 @@ A flutter plugin for iOS, Android and Mac for Rotate, Scaling, Moving and Editin
 
 | Only Text                                                                                    | Only Photo                                                                                      |
 | -------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
-| ![](https://github.com/Harsh-Radadiya/sticker_editor/raw/master/assets/readme/only_text.png) | ![](https://github.com/Harsh-Radadiya/sticker_editor/raw/master/assets/readme/only_picture.png) |
+| ![](https://github.com/tinyjin/sticker_editor/raw/master/assets/readme/only_text.png) | ![](https://github.com/tinyjin/sticker_editor/raw/master/assets/readme/only_picture.png) |
 
 <br>
  
@@ -37,6 +34,8 @@ A flutter package Sticker Editor which will help you to create editable and scal
 - You can resizes widget using scaling function
 - Highly customizable
 - You can use whole sticker view or particular widgets
+- Serialize the Texts and Pictures in JSON format
+
 ## Installation
 
 First, add `stickereditor` as a [dependency in your pubspec.yaml file](https://flutter.dev/using-packages/).
@@ -57,6 +56,9 @@ StickerEditingView(
   fonts: fonts,
   palletColor: colorPallet,
   assetList: stickerList,
+  texts: texts, // Texts to be shown in the Sticker Editor
+  pictures: pictures, // Pictures to be shown in the Sticker Editor
+  viewOnly: false, // If true, the Sticker Editor will be in view only mode
 ),
 ```
 
@@ -104,8 +106,7 @@ Container(
             left: 50,
             top: 50,
             scale: 1,
-            stringUrl:
-                'https://raw.githubusercontent.com/Harsh-Radadiya/sticker_editor/master/example/assets/t-shirt.jpeg',
+            stringUrl: 'https://github.com/tinyjin/sticker_editor_plus/blob/main/example/assets/t-shirt.jpeg?raw=true',
           )),
     ],
   ),
