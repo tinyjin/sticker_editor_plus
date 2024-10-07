@@ -51,3 +51,6 @@ example/android
 example/ios
 example/macos
 example/web
+
+# README assets
+assets/readme
