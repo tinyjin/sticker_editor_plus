@@ -100,7 +100,6 @@ Container(
           boundHeight: 200,
           boundWidth: 200,
           pictureModel: PictureModel(
-            isNetwork: true,
             isSelected: false,
             left: 50,
             top: 50,
