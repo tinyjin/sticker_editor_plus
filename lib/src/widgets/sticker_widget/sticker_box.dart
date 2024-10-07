@@ -141,7 +141,7 @@ class _StickerEditingBoxState extends State<StickerEditingBox> {
                         ? Colors.grey[600]!
                         : Colors.transparent,
                     padding: const EdgeInsets.all(4),
-                    child: widget.pictureModel.isNetwork
+                    child: widget.pictureModel.stringUrl.startsWith('http')
                         ? Image.network(widget.pictureModel.stringUrl,
                             height: 50, width: 50)
                         : Image.asset(widget.pictureModel.stringUrl,

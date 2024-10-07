@@ -421,6 +421,8 @@ class _StickerEditingViewState extends State<StickerEditingView> {
                       crossAxisCount: 4),
                   itemCount: widget.assetList!.length,
                   itemBuilder: (BuildContext context, int index) {
+                    final asset = widget.assetList![index];
+                    final isNetwork = asset.startsWith('http');
                     return InkWell(
                       onTap: () {
                         for (var e in newimageList) {
@@ -430,7 +432,6 @@ class _StickerEditingViewState extends State<StickerEditingView> {
                           e.isSelected = false;
                         }
                         newimageList.add(PictureModel(
-                            isNetwork: false,
                             stringUrl: widget.assetList![index],
                             top: y1 + 10 < 300 ? y1 + 10 : 300,
                             isSelected: true,
@@ -442,8 +443,9 @@ class _StickerEditingViewState extends State<StickerEditingView> {
                         Navigator.pop(context);
                         setState(() {});
                       },
-                      child: Image.asset(widget.assetList![index],
-                          height: 50, width: 50),
+                      child: isNetwork
+                          ? Image.network(asset, height: 50, width: 50)
+                          : Image.asset(asset, height: 50, width: 50),
                     );
                   }),
             ),
