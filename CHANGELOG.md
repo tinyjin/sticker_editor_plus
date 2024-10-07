@@ -1,3 +1,8 @@
+# 1.1.1
+
+- Remove `isNetwork` from `PictureModel`
+- Display pictures from network or local assets correctly by detecting the URL
+
 ## 1.1.0
 
 Support custom controller Icons. [[issue](https://github.com/tinyjin/sticker_editor_plus/issues/1)]
