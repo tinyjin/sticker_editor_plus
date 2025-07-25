@@ -53,8 +53,8 @@ class TextModel {
         'fontSize': textStyle.fontSize,
         'height': textStyle.height,
         'letterSpacing': textStyle.letterSpacing,
-        'color': textStyle.color?.value,
-        'backgroundColor': textStyle.backgroundColor?.value,
+        'color': textStyle.color?.toARGB32(),
+        'backgroundColor': textStyle.backgroundColor?.toARGB32(),
       },
       'textAlign': textAlign.index
     };

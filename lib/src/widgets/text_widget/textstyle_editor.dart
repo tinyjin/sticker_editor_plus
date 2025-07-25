@@ -206,9 +206,6 @@ class _TextStyleEditorState extends State<TextStyleEditor> {
                       }
                     },
                   );
-
-                default:
-                  return Container();
               }
             }(),
           ),
