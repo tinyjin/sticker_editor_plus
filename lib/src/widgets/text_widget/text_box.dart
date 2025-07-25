@@ -2,8 +2,6 @@ import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:sticker_editor_plus/src/constants_value.dart';
 import 'package:sticker_editor_plus/src/model/text_model.dart';
-import 'package:flutter/widgets.dart';
-import 'package:flutter/gestures.dart';
 
 import 'textstyle_editor.dart';
 
@@ -194,10 +192,12 @@ class _TextEditingBoxState extends State<TextEditingBox> {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: DottedBorder(
-                    color: widget.isSelected
-                        ? Colors.grey[600]!
-                        : Colors.transparent,
-                    padding: const EdgeInsets.all(4),
+                    options: RectDottedBorderOptions(
+                      padding: const EdgeInsets.all(4),
+                      color: widget.newText.isSelected
+                          ? Colors.grey[600]!
+                          : Colors.transparent,
+                    ),
                     child: Text(widget.newText.name,
                         style: widget.newText.textStyle,
                         textAlign: widget.newText.textAlign,

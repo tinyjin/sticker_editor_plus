@@ -137,10 +137,12 @@ class _StickerEditingBoxState extends State<StickerEditingBox> {
                 Padding(
                   padding: const EdgeInsets.all(10),
                   child: DottedBorder(
-                    color: widget.pictureModel.isSelected
-                        ? Colors.grey[600]!
-                        : Colors.transparent,
-                    padding: const EdgeInsets.all(4),
+                    options: RectDottedBorderOptions(
+                      padding: const EdgeInsets.all(4),
+                      color: widget.pictureModel.isSelected
+                          ? Colors.grey[600]!
+                          : Colors.transparent,
+                    ),
                     child: widget.pictureModel.stringUrl.startsWith('http')
                         ? Image.network(widget.pictureModel.stringUrl,
                             height: 50, width: 50)

@@ -13,8 +13,8 @@ dependencies:
     sdk: flutter
   flutter_web_plugins:
     sdk: flutter
-  get: ^4.3.8
-  dotted_border: ^2.0.0+1
+  get: ^4.7.2
+  dotted_border: ^3.1.0
 
 dev_dependencies:
   flutter_test:
