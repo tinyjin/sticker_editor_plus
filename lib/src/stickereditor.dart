@@ -158,8 +158,9 @@ class _StickerEditingViewState extends State<StickerEditingView> {
 
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.width;
+    final deviceSize = MediaQuery.of(context).size;
+    double height = deviceSize.height;
+    double width = deviceSize.width;
 
     return Scaffold(
       backgroundColor: widget.backgroundColor ?? Colors.white,
@@ -175,11 +176,12 @@ class _StickerEditingViewState extends State<StickerEditingView> {
                 width: widget.width ?? width * .8,
                 child: Stack(
                   children: [
-                    widget.viewOnly
-                        ? widget.child
-                        : IgnorePointer(
-                            child: widget.child,
-                          ),
+                    Center(
+                      child: IgnorePointer(
+                        ignoring: widget.viewOnly,
+                        child: widget.child,
+                      ),
+                    ),
                     widget.viewOnly
                         ? const SizedBox.shrink()
                         : GestureDetector(
