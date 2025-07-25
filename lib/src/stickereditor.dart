@@ -181,8 +181,8 @@ class _StickerEditingViewState extends State<StickerEditingView> {
                             child: widget.child,
                           ),
                     widget.viewOnly
-                        ? Container()
-                        : InkWell(
+                        ? const SizedBox.shrink()
+                        : GestureDetector(
                             onTap: () {
                               setState(() {
                                 for (var element in newStringList) {
