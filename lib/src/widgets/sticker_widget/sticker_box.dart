@@ -69,7 +69,7 @@ class _StickerEditingBoxState extends State<StickerEditingBox> {
           angle: widget.pictureModel.angle,
           child: GestureDetector(
             onScaleStart: (tap) {
-              setState(() => deltaOffset = const Offset(0, 0));
+              setState(() => deltaOffset = tap.focalPoint);
             },
             onScaleUpdate: (tap) {
               if (widget.viewOnly) {
