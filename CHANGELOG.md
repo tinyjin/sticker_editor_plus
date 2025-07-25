@@ -1,4 +1,9 @@
-# 1.1.1
+## 1.1.2
+
+- Fix correct sticker dragging behavior [[issue](https://github.com/tinyjin/sticker_editor_plus/issues/7)]
+- Up-to-date dependencies
+
+## 1.1.1
 
 - Remove `isNetwork` from `PictureModel`
 - Display pictures from network or local assets correctly by detecting the URL
