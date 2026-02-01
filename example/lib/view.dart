@@ -88,7 +88,6 @@ class _TextEditingBoxScreenState extends State<TextEditingBoxScreen> {
               StickerWidget(
                 boundHeight: 200,
                 boundWidth: 100,
-                isSelected: true,
                 data: TextModel(
                     name: 'Text EditingBox',
                     textStyle:

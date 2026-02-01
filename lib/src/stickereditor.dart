@@ -405,7 +405,6 @@ class _StickerEditingViewState extends State<StickerEditingView> {
                           ),
                     ...newStringList.map((v) {
                       return StickerWidget(
-                          isSelected: !widget.viewOnly && v.isSelected,
                           viewOnly: widget.viewOnly,
                           data: v,
                           onTextEditRequest: widget.onTextAddRequest == null

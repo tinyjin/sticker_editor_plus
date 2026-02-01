@@ -392,9 +392,10 @@ packages:
   sticker_widget:
     dependency: "direct main"
     description:
-      path: "../sticker_widget"
-      relative: true
-    source: path
+      name: sticker_widget
+      sha256: "7d1e1dc5fa894c4406599e89cc7ce36c5c33e7a58942e9d8bb9f5aea310334ca"
+      url: "https://pub.dev"
+    source: hosted
     version: "0.0.1"
   stream_channel:
     dependency: transitive
