@@ -99,17 +99,14 @@ Container(
   color: Colors.blue,
   child: Stack(
     children: [
-      TextEditingBox(
-        fonts: fonts,
+      StickerWidget(
         boundHeight: 200,
         boundWidth: 100,
         isSelected: true,
-        palletColor: colorPallet,
-        useColorPicker: true,
-        newText: TextModel(
+        data: TextModel(
             name: 'Text EditingBox',
             textStyle:
-                GoogleFonts.pacifico(fontSize: 25, color: Colwhite),
+                GoogleFonts.pacifico(fontSize: 25, color: Colors.white),
             top: top,
             isSelected: true,
             textAlign: TextAlign.center,
@@ -129,10 +126,10 @@ Container(
   color: Colors.blue,
   child: Stack(
     children: [
-      StickerEditingBox(
+      StickerWidget(
           boundHeight: 200,
           boundWidth: 200,
-          pictureModel: PictureModel(
+          data: PictureModel(
             isSelected: false,
             left: 50,
             top: 50,

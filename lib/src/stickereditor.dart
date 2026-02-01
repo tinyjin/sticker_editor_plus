@@ -3,23 +3,24 @@ library sticker_editor;
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:sticker_widget/sticker_widget.dart';
 import 'package:sticker_editor_plus/src/constants_value.dart';
 import 'package:sticker_editor_plus/src/widgets/custom_button.dart';
+import 'package:sticker_editor_plus/src/widgets/text_widget/textstyle_editor.dart';
 
 import 'model/custom_add_requests.dart';
-import 'model/picture_model.dart';
 import 'model/sticker_placement.dart';
-import 'model/text_model.dart';
-import 'widgets/sticker_widget/sticker_box.dart';
-import 'widgets/text_widget/text_box.dart';
 
 export 'package:sticker_editor_plus/src/constants_value.dart';
 
-export 'model/picture_model.dart';
 export 'model/sticker_placement.dart';
-export 'model/text_model.dart';
-export 'widgets/sticker_widget/sticker_box.dart';
-export 'widgets/text_widget/text_box.dart';
+export 'package:sticker_widget/sticker_widget.dart'
+    show
+        PictureModel,
+        PictureEditingBox,
+        StickerWidget,
+        TextModel,
+        TextEditingBox;
 
 typedef SaveCallback = void Function(
   List<TextModel> texts,
@@ -118,7 +119,7 @@ class StickerEditingView extends StatefulWidget {
   /// Whether to allow the color picker in text style editors.
   final bool useColorPicker;
 
-  /// Create a [StickerEditingBox] widget.
+  /// Create a [StickerWidget] widget.
   ///
   /// [showControl] determines whether the bottom control bar (add text, add sticker, save, etc.)
   /// is visible. Set to `false` to hide these controls for view-only or restricted editing modes.
@@ -176,6 +177,54 @@ class _StickerEditingViewState extends State<StickerEditingView> {
   // new String and Image List
   RxList<TextModel> newStringList = <TextModel>[].obs;
   RxList<PictureModel> newimageList = <PictureModel>[].obs;
+
+  List<Color> _resolvePaletteColors() {
+    final colors = widget.palletColor;
+    if (colors == null || colors.isEmpty) {
+      return [
+        Colors.black,
+        Colors.white,
+        Colors.red,
+        Colors.blue,
+        Colors.blueAccent,
+        Colors.brown,
+        Colors.green,
+        Colors.indigoAccent,
+        Colors.lime,
+      ];
+    }
+    return colors;
+  }
+
+  Future<void> _showTextStyleBottomSheet(TextModel text) async {
+    final height = MediaQuery.of(context).size.height;
+    final palette = _resolvePaletteColors();
+    await showModalBottomSheet(
+      elevation: 15,
+      barrierColor: Colors.transparent,
+      context: context,
+      builder: (context) {
+        return Container(
+          padding: const EdgeInsets.all(4),
+          height: height * .35,
+          child: TextStyleEditor(
+            fonts: widget.fonts,
+            paletteColors: palette,
+            useColorPicker: widget.useColorPicker,
+            textStyle: text.textStyle,
+            textAlign: text.textAlign,
+            onTextAlignEdited: (align) {
+              setState(() => text.textAlign = align);
+            },
+            onTextStyleEdited: (style) {
+              setState(() => text.textStyle = text.textStyle.merge(style));
+            },
+            onCpasLockTaggle: (caps) {},
+          ),
+        );
+      },
+    );
+  }
 
   @override
   void initState() {
@@ -355,10 +404,26 @@ class _StickerEditingViewState extends State<StickerEditingView> {
                             },
                           ),
                     ...newStringList.map((v) {
-                      return TextEditingBox(
+                      return StickerWidget(
                           isSelected: !widget.viewOnly && v.isSelected,
                           viewOnly: widget.viewOnly,
-                          onTextAddRequest: widget.onTextAddRequest,
+                          data: v,
+                          onTextEditRequest: widget.onTextAddRequest == null
+                              ? null
+                              : (context, currentText) async {
+                                  final result = await widget.onTextAddRequest!(
+                                    context,
+                                    TextAddPayload(
+                                      defaultText: currentText,
+                                      defaultTextStyle: v.textStyle,
+                                      defaultTextAlign: v.textAlign,
+                                      fonts: widget.fonts,
+                                      paletteColors: widget.palletColor,
+                                      useColorPicker: widget.useColorPicker,
+                                    ),
+                                  );
+                                  return result?.text;
+                                },
                           onTap: () {
                             if (widget.viewOnly) {
                               return;
@@ -374,6 +439,7 @@ class _StickerEditingViewState extends State<StickerEditingView> {
                                 }
                                 v.isSelected = true;
                               });
+                              _showTextStyleBottomSheet(v);
                             } else {
                               setState(() {
                                 v.isSelected = false;
@@ -386,10 +452,6 @@ class _StickerEditingViewState extends State<StickerEditingView> {
 
                             newStringList.removeAt(index);
                           },
-                          palletColor: widget.palletColor,
-                          useColorPicker: widget.useColorPicker,
-                          fonts: widget.fonts,
-                          newText: v,
                           editIcon: widget.editIcon,
                           resizeIcon: widget.resizeIcon,
                           closeIcon: widget.closeIcon,
@@ -398,8 +460,9 @@ class _StickerEditingViewState extends State<StickerEditingView> {
                           boundHeight: boundHeight);
                     }).toList(),
                     ...newimageList.map((v) {
-                      return StickerEditingBox(
+                      return StickerWidget(
                           viewOnly: widget.viewOnly,
+                          data: v,
                           onCancel: () {
                             int index = newimageList
                                 .indexWhere((element) => v == element);
@@ -431,8 +494,7 @@ class _StickerEditingViewState extends State<StickerEditingView> {
                           closeIcon: widget.closeIcon,
                           rotateIcon: widget.rotateIcon,
                           boundWidth: boundWidth,
-                          boundHeight: boundHeight,
-                          pictureModel: v);
+                          boundHeight: boundHeight);
                     }),
                   ],
                 ),

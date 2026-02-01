@@ -85,13 +85,11 @@ class _TextEditingBoxScreenState extends State<TextEditingBoxScreen> {
           color: Colors.blue,
           child: Stack(
             children: [
-              TextEditingBox(
-                fonts: fonts,
+              StickerWidget(
                 boundHeight: 200,
                 boundWidth: 100,
                 isSelected: true,
-                palletColor: colorPallet,
-                newText: TextModel(
+                data: TextModel(
                     name: 'Text EditingBox',
                     textStyle:
                         GoogleFonts.pacifico(fontSize: 25, color: Colors.white),
@@ -109,15 +107,15 @@ class _TextEditingBoxScreenState extends State<TextEditingBoxScreen> {
   }
 }
 
-class StickerEditingBoxScreen extends StatefulWidget {
-  const StickerEditingBoxScreen({Key? key}) : super(key: key);
+class StickerWidgetScreen extends StatefulWidget {
+  const StickerWidgetScreen({Key? key}) : super(key: key);
 
   @override
-  _StickerEditingBoxScreenState createState() =>
-      _StickerEditingBoxScreenState();
+  _StickerWidgetScreenState createState() =>
+      _StickerWidgetScreenState();
 }
 
-class _StickerEditingBoxScreenState extends State<StickerEditingBoxScreen> {
+class _StickerWidgetScreenState extends State<StickerWidgetScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -131,10 +129,10 @@ class _StickerEditingBoxScreenState extends State<StickerEditingBoxScreen> {
         color: Colors.blue,
         child: Stack(
           children: [
-            StickerEditingBox(
+            StickerWidget(
                 boundHeight: 200,
                 boundWidth: 200,
-                pictureModel: PictureModel(
+                data: PictureModel(
                   isSelected: false,
                   left: 50,
                   top: 50,

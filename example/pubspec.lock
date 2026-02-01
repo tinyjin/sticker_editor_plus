@@ -412,6 +412,13 @@ packages:
       relative: true
     source: path
     version: "1.1.2"
+  sticker_widget:
+    dependency: transitive
+    description:
+      path: "../../sticker_widget"
+      relative: true
+    source: path
+    version: "0.0.1"
   stream_channel:
     dependency: transitive
     description:
@@ -573,5 +580,5 @@ packages:
     source: hosted
     version: "1.0.4"
 sdks:
-  dart: ">=3.9.0 <4.0.0"
+  dart: ">=3.10.7 <4.0.0"
   flutter: ">=3.38.0"

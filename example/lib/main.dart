@@ -68,9 +68,9 @@ class _HomePageState extends State<HomePage> {
                       context,
                       MaterialPageRoute(
                           builder: (context) =>
-                              const StickerEditingBoxScreen()));
+                              const StickerWidgetScreen()));
                 },
-                child: const Text('StickerEditingBox')),
+                child: const Text('StickerWidget')),
             const SizedBox(height: 10),
             ElevatedButton(
                 onPressed: () {

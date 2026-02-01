@@ -24,7 +24,7 @@ StickerEditingView(
   editIcon: const Icon(Icons.edit),
 )
 
-StickerEditingBox(
+StickerWidget(
   rotateIcon: const Icon(Icons.heart_broken),
   closeIcon: const Icon(Icons.star),
   rotateIcon: const Icon(Icons.rectangle),

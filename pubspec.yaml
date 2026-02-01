@@ -18,6 +18,8 @@ dependencies:
   get: ^4.7.2
   dotted_border: ^3.1.0
   flex_color_picker: ^3.6.0
+  sticker_widget:
+    path: ../sticker_widget
 
 dev_dependencies:
   flutter_test:
