@@ -14,11 +14,11 @@ dependencies:
     sdk: flutter
   flutter_web_plugins:
     sdk: flutter
-  cached_network_image: ^3.3.1
   get: ^4.7.2
   dotted_border: ^3.1.0
   flex_color_picker: ^3.6.0
-  sticker_widget: ^0.0.1
+  sticker_widget:
+    path: /Users/jinny/work/jinny/sticker_widget
 
 dev_dependencies:
   flutter_test:
