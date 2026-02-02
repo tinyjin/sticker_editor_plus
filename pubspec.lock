@@ -432,9 +432,11 @@ packages:
   sticker_widget:
     dependency: "direct main"
     description:
-      path: "/Users/jinny/work/jinny/sticker_widget"
-      relative: false
-    source: path
+      path: "."
+      ref: "jinny/animated-sticker"
+      resolved-ref: "7963904d9d56fa00e16b1f3af9bc398882b1a6ae"
+      url: "https://github.com/blossomdiary/sticker_widget.git"
+    source: git
     version: "0.0.1"
   stream_channel:
     dependency: transitive

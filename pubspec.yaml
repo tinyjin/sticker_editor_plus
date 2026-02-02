@@ -18,7 +18,9 @@ dependencies:
   dotted_border: ^3.1.0
   flex_color_picker: ^3.6.0
   sticker_widget:
-    path: /Users/jinny/work/jinny/sticker_widget
+    git:
+      url: https://github.com/blossomdiary/sticker_widget.git
+      ref: jinny/animated-sticker
 
 dev_dependencies:
   flutter_test:
